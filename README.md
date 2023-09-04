@@ -21,4 +21,4 @@ This is an App to Store Text / Photos
 
 ### Supabase to keep the data
 
-#pages
+Live Link - TBA
