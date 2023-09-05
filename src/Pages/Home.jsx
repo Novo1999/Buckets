@@ -11,21 +11,25 @@ import Input from "../Components/Input";
 
 import BucketOperation from "../Components/BucketOperation";
 import { Outlet } from "react-router-dom";
+import Bucket from "./Bucket";
 
 function Home() {
-  const { title, text } = useSelector((state) => state.bucket);
+  const { title, text, tabIsOpen } = useSelector((state) => state.bucket);
 
   return (
     <section>
       <BucketOperation />
       <Toaster />
       <div className="flex justify-center h-screen ">
-        <form className="flex items-center flex-col gap-4 h-screen mt-10">
-          <Input value={title} dispatchFn={changeTitle} type="title" />
-          <Input value={text} dispatchFn={textContent} type="textContent" />
-        </form>
+        {!tabIsOpen ? (
+          <form className="flex items-center flex-col gap-4 h-screen mt-10">
+            <Input value={title} dispatchFn={changeTitle} type="title" />
+            <Input value={text} dispatchFn={textContent} type="textContent" />
+          </form>
+        ) : (
+          <Outlet />
+        )}
       </div>
-      <Outlet />
     </section>
   );
 }

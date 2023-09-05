@@ -1,18 +1,20 @@
 import { HiPlus } from "react-icons/hi2";
 import { useCreateBucket } from "../hooks/useCreateBucket";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+
 import { RxCross2 } from "react-icons/rx";
 import { useGetBucket } from "../hooks/useGetBucket";
 import { useDeleteBucket } from "../hooks/useDeleteBucket";
 import { LoaderIcon } from "react-hot-toast";
 import { Link } from "react-router-dom";
-import { setCurrentContent } from "../features/bucketSlice/bucketSlice";
+import {
+  setCurrentContent,
+  setTabIsOpen,
+} from "../features/bucketSlice/bucketSlice";
 // import { useRandomColor } from "../hooks/useRandomColor";
 
 function BucketOperation() {
   // State
-  const [tabIsOpen, setTabisOpen] = useState(false);
   const { title, text } = useSelector((state) => state.bucket);
   const dispatch = useDispatch();
 
@@ -46,6 +48,7 @@ function BucketOperation() {
 
   function handleClick(id) {
     dispatch(setCurrentContent(id));
+    dispatch(setTabIsOpen(true));
   }
 
   return (
@@ -66,7 +69,7 @@ function BucketOperation() {
               to={`bucket/${item.id}`}
               onClick={() => handleClick(item.id)}
               key={item.id}
-              className="shadow-md h-15 p-4 w-60 flex justify-between items-center px-2 col-span-2 cursor-pointer"
+              className="shadow-md h-15 p-4 w-60 flex justify-between items-center px-2 col-span-2 cursor-pointer text-white"
               style={{ backgroundColor: item.color }}
             >
               {item.title}

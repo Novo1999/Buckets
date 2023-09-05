@@ -4,6 +4,7 @@ const initialState = {
   title: "",
   text: "",
   currentContent: null,
+  tabIsOpen: false,
 };
 
 export const bucketSlice = createSlice({
@@ -19,9 +20,13 @@ export const bucketSlice = createSlice({
     setCurrentContent: (state, action) => {
       state.currentContent = action.payload;
     },
+    setTabIsOpen: (state, action) => {
+      state.tabIsOpen = action.payload;
+    },
   },
 });
 
-export const { title, textContent, setCurrentContent } = bucketSlice.actions;
+export const { title, textContent, setCurrentContent, setTabIsOpen } =
+  bucketSlice.actions;
 
 export default bucketSlice.reducer;
