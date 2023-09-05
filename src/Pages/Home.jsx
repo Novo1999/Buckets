@@ -6,15 +6,18 @@ import {
   textContent,
   title as changeTitle,
 } from "../features/bucketSlice/bucketSlice";
-import AddBucket from "../Components/AddBucket";
+
 import Input from "../Components/Input";
+
+import BucketOperation from "../Components/BucketOperation";
+import { Outlet } from "react-router-dom";
 
 function Home() {
   const { title, text } = useSelector((state) => state.bucket);
 
   return (
     <section>
-      <AddBucket />
+      <BucketOperation />
       <Toaster />
       <div className="flex justify-center h-screen ">
         <form className="flex items-center flex-col gap-4 h-screen mt-10">
@@ -22,6 +25,7 @@ function Home() {
           <Input value={text} dispatchFn={textContent} type="textContent" />
         </form>
       </div>
+      <Outlet />
     </section>
   );
 }

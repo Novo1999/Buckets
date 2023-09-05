@@ -27,15 +27,11 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "bucketlist",
-        element: <BucketList />,
+        path: "bucket/:id",
+        element: <Bucket />,
+        errorElement: <ErrorPage />,
       },
     ],
-  },
-  {
-    path: "bucket",
-    element: <Bucket />,
-    errorElement: <ErrorPage />,
   },
 ]);
 

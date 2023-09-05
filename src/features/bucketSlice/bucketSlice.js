@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   title: "",
   text: "",
+  currentContent: null,
 };
 
 export const bucketSlice = createSlice({
@@ -15,9 +16,12 @@ export const bucketSlice = createSlice({
     textContent: (state, action) => {
       state.text = action.payload;
     },
+    setCurrentContent: (state, action) => {
+      state.currentContent = action.payload;
+    },
   },
 });
 
-export const { title, textContent } = bucketSlice.actions;
+export const { title, textContent, setCurrentContent } = bucketSlice.actions;
 
 export default bucketSlice.reducer;
