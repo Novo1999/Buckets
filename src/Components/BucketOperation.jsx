@@ -2,6 +2,8 @@ import { useCreateBucket } from "../hooks/useCreateBucket";
 import { useDispatch, useSelector } from "react-redux";
 import { BsBucketFill } from "react-icons/bs";
 import { RxCross2 } from "react-icons/rx";
+import { AiOutlineSave } from "react-icons/ai";
+import { IoCreateOutline } from "react-icons/io5";
 import { useGetBucket } from "../hooks/useGetBucket";
 import { deleteContent, useDeleteBucket } from "../hooks/useDeleteBucket";
 import { LoaderIcon } from "react-hot-toast";
@@ -25,7 +27,12 @@ function BucketOperation() {
   function showTitle() {
     if (text.length > 0)
       return text.length > 15 ? `${text.slice(0, 15)}...` : text.slice(0, 15);
-    return "Untitled";
+    return (
+      <span className="flex items-center">
+        <IoCreateOutline />
+        Create New
+      </span>
+    );
   }
 
   function handleSubmit(e) {
@@ -55,16 +62,25 @@ function BucketOperation() {
           Buckets
         </div>
         <div className="grid gap-y-20 gap-x-28 grid-cols-12">
-          <Link
-            onClick={setTabIsOpen(false)}
-            to="/"
-            className="shadow-md h-20 w-48 flex justify-between items-center px-2 col-span-2"
-          >
-            {showTitle()}
-            <button className="hover:scale-125">
-              <RxCross2 />
-            </button>
-          </Link>
+          <div className="shadow-md h-30 w-48 flex flex-col gap-6 items-center col-span-2">
+            <Link
+              className="relative top-4 border-2 px-2 py-2"
+              onClick={setTabIsOpen(false)}
+              to="/"
+            >
+              {showTitle()}
+            </Link>
+            {text && (
+              <button
+                className="h-4 w-36 flex justify-center items-center gap-2 hover:underline rounded-md text-lg font-semibold  transition-all duration-300"
+                type="submit"
+                onClick={(e) => handleSubmit(e)}
+              >
+                <AiOutlineSave />
+                Save
+              </button>
+            )}
+          </div>
           <div className="grid grid-cols-6 gap-y-4 gap-x-52">
             {data?.map((item) => {
               return (
@@ -93,13 +109,6 @@ function BucketOperation() {
                 </Link>
               );
             })}
-            <button
-              className="mr-20 h-10 w-36 flex justify-center items-center bg-white shadow-md px-4 py-4 w-18 rounded-md font-semibold hover:bg-black hover:text-white transition-all duration-300"
-              type="submit"
-              onClick={(e) => handleSubmit(e)}
-            >
-              Save
-            </button>
           </div>
         </div>
       </div>
