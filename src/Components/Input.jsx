@@ -1,29 +1,35 @@
 import { useDispatch } from "react-redux";
 
-function Input({ value, dispatchFn, type, children }) {
-  const dispatch = useDispatch();
+import { updateContent, useUpdateBucket } from "../hooks/useUpdateBucket";
+import Button from "./Button";
 
-  let style = {};
-  if (type === "title") {
-    style = {
-      height: "h-[3rem]",
-    };
+function Input({ value, dispatchFn, type }) {
+  const dispatch = useDispatch();
+  const { updateBucket } = useUpdateBucket();
+
+  // Changes the text area
+  function handleChange(e) {
+    dispatch(dispatchFn(e.target.value));
   }
-  if (type === "textContent") {
-    style = {
-      height: "h-[40rem]",
-    };
+
+  function handleUpdate(e, id, content) {
+    if (e.target.value === "Update") {
+      updateContent(id, content);
+      updateBucket();
+    }
   }
+
   return (
-    <textarea
-      value={value}
-      onChange={(e) => dispatch(dispatchFn(e.target.value))}
-      type="text"
-      placeholder={type === "title" ? "Title" : "Text"}
-      className={`border-4 rounded-lg focus:outline-red-300 w-[110rem] ${style.height} px-2 resize-none mt-4 overflow-y-auto pt-[6px]`}
-    >
-      {children}
-    </textarea>
+    <div className="relative p-4 flex justify-center max-w-[120rem]">
+      {type === "editContent" && <Button updateFn={handleUpdate} />}
+      <textarea
+        value={value}
+        onChange={(e) => handleChange(e)}
+        type="text"
+        placeholder="Text"
+        className={`border-4 rounded-lg focus:outline-red-300 w-full h-[40rem] px-2 resize-none overflow-y-auto pt-[6px]`}
+      ></textarea>
+    </div>
   );
 }
 

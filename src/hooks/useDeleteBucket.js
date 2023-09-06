@@ -3,7 +3,7 @@ import { supabase } from "../Backend/Supabase";
 import { toast } from "react-hot-toast";
 import { getAllContent } from "./useGetBucket";
 
-async function deleteContent(id) {
+export async function deleteContent(id) {
   const { data, error } = await supabase.from("bucket").delete().eq("id", id);
   if (error) throw new Error("Error Deleting Bucket");
   return data;
@@ -29,5 +29,5 @@ export function useDeleteBucket() {
     onError: (err) => toast.error(err.message),
   });
 
-  return { mutate, deleteContent, isDeleting };
+  return { mutate, isDeleting };
 }

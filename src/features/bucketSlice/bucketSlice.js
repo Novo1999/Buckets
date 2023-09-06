@@ -1,32 +1,41 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  title: "",
   text: "",
-  currentContent: null,
+  currentContentId: null,
   tabIsOpen: false,
+  isEditing: false,
+  editedContent: "",
 };
 
 export const bucketSlice = createSlice({
   name: "bucket",
   initialState,
   reducers: {
-    title: (state, action) => {
-      state.title = action.payload;
-    },
     textContent: (state, action) => {
       state.text = action.payload;
     },
     setCurrentContent: (state, action) => {
-      state.currentContent = action.payload;
+      state.currentContentId = action.payload;
     },
     setTabIsOpen: (state, action) => {
       state.tabIsOpen = action.payload;
     },
+    setIsEditing: (state, action) => {
+      state.isEditing = action.payload;
+    },
+    setEditedContent: (state, action) => {
+      state.editedContent = action.payload;
+    },
   },
 });
 
-export const { title, textContent, setCurrentContent, setTabIsOpen } =
-  bucketSlice.actions;
+export const {
+  textContent,
+  setCurrentContent,
+  setTabIsOpen,
+  setIsEditing,
+  setEditedContent,
+} = bucketSlice.actions;
 
 export default bucketSlice.reducer;

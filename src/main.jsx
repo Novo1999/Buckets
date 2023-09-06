@@ -40,7 +40,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <QueryClientProvider client={queryClient}>
       <Provider store={store}>
         <RouterProvider router={router} />
-        <ReactQueryDevtools initialIsOpen={false} />
+        <ReactQueryDevtools />
       </Provider>
     </QueryClientProvider>
   </React.StrictMode>

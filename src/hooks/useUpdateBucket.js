@@ -1,38 +1,38 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "../Backend/Supabase";
+
 import { toast } from "react-hot-toast";
+import { getAllContent } from "./useGetBucket";
 
-function generateRandomColor() {
-  return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
-}
-
-async function postContent({ content }) {
+export async function updateContent(id, content) {
   const { data, error } = await supabase
     .from("bucket")
-    .insert([{ content: content, color: generateRandomColor() }])
+    .update({ content: content })
+    .eq("id", id)
     .select();
-  if (error) throw new Error("Error posting new content to bucket");
+
+  if (error) throw new Error("There was an error updating the Bucket");
   return data;
 }
 
-export function useCreateBucket() {
+export function useUpdateBucket() {
   const queryClient = useQueryClient();
 
-  const { mutate } = useMutation({
-    mutationFn: postContent,
+  const { mutate: updateBucket } = useMutation({
+    mutationFn: getAllContent,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["bucket"] });
-      toast("Bucket Added Successfully", {
+      toast("Bucket Updated Successfully", {
         duration: 1000,
         position: "top-right",
         style: {
           backgroundColor: "white",
           color: "black",
         },
-        icon: "✅",
+        icon: "🔃",
       });
     },
   });
 
-  return { mutate };
+  return { updateBucket };
 }
