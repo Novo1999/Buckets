@@ -1,6 +1,6 @@
 import { useCreateBucket } from "../hooks/useCreateBucket";
 import { useDispatch, useSelector } from "react-redux";
-
+import { BsBucketFill } from "react-icons/bs";
 import { RxCross2 } from "react-icons/rx";
 import { useGetBucket } from "../hooks/useGetBucket";
 import { deleteContent, useDeleteBucket } from "../hooks/useDeleteBucket";
@@ -46,9 +46,15 @@ function BucketOperation() {
   }
 
   return (
-    <section className="shadow-md w-screen">
-      <div className="pb-8 grid pt-5 pl-20 h-auto grid-rows-1 grid-cols-2">
-        <div className="grid gap-y-20 grid-cols-12">
+    <section className="shadow-md">
+      <div className="flex p-4 gap-x-8">
+        <div className="text-5xl font-serif">
+          <span className="text-5xl">
+            <BsBucketFill />
+          </span>
+          Buckets
+        </div>
+        <div className="grid gap-y-20 gap-x-28 grid-cols-12">
           <Link
             onClick={setTabIsOpen(false)}
             to="/"
@@ -59,7 +65,7 @@ function BucketOperation() {
               <RxCross2 />
             </button>
           </Link>
-          <div className="grid grid-cols-7 gap-y-4 gap-x-52 ml-16">
+          <div className="grid grid-cols-6 gap-y-4 gap-x-52">
             {data?.map((item) => {
               return (
                 <Link

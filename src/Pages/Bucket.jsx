@@ -2,21 +2,26 @@ import { useGetBucket } from "../hooks/useGetBucket";
 import Input from "../Components/Input";
 import { useDispatch, useSelector } from "react-redux";
 import { setEditedContent } from "../features/bucketSlice/bucketSlice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useLocation, useParams, useSearchParams } from "react-router-dom";
 
 function Bucket() {
   const { currentContentId, isEditing, editedContent } = useSelector(
     (state) => state.bucket
   );
-
+  const { data } = useGetBucket();
+  const { id: paramId } = useParams();
   const dispatch = useDispatch();
 
-  const { data } = useGetBucket();
+  const [clickedItemContent, setClickedItemContent] = useState(
+    data?.find((item) => item.id === currentContentId)?.content
+  );
 
-  // Get a single content from the query cache
-  const clickedItemContent = data?.find(
-    (item) => item.id === currentContentId
-  )?.content;
+  useEffect(() => {
+    setClickedItemContent(
+      data?.find((item) => item.id === Number(paramId))?.content
+    );
+  }, [paramId, data]);
 
   // To do the editing on the currently saved content
   useEffect(() => {
