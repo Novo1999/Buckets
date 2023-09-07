@@ -5,7 +5,7 @@ import { MdDeleteForever } from "react-icons/md";
 import { AiOutlineSave } from "react-icons/ai";
 import { IoCreateOutline } from "react-icons/io5";
 import { useGetBucket } from "../hooks/useGetBucket";
-import { deleteContent, useDeleteBucket } from "../hooks/useDeleteBucket";
+import { useDeleteBucket } from "../hooks/useDeleteBucket";
 import { LoaderIcon } from "react-hot-toast";
 import { Link } from "react-router-dom";
 import {
@@ -93,7 +93,7 @@ function BucketOperation() {
                   to={`bucket/${item.id}`}
                   onClickCapture={() => handleClick(item.id)}
                   key={item.id}
-                  className={`shadow-md h-10 p-4 max-w-xl w-fit mr-8 flex justify-between items-center px-2 drop-shadow-md text-white cursor-pointer font-semibold text-lg hover:border-2 rounded-md ${
+                  className={`shadow-md  p-4 max-w-xl w-fit h-fit mr-8 flex justify-between items-center px-2 drop-shadow-md text-white cursor-pointer font-semibold text-lg hover:border-2 rounded-md ${
                     currentContentId === item.id && "border-2"
                   } `}
                   style={{ backgroundColor: item.color }}

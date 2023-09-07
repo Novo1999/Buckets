@@ -8,13 +8,14 @@ function Button({ updateFn }) {
   );
   return (
     isEditing && (
-      <div className="bg-black text-white px-4 py-2 rounded-xl absolute top-7 right-7 cursor-pointer">
+      <div className="bg-black text-white px-4 py-2 rounded-xl absolute top-7 right-7 cursor-pointer ">
         <button
           onClick={() => updateFn(currentContentId, editedContent)}
           value="Update"
           className="flex items-center gap-2"
         >
-          <MdOutlineSystemUpdateAlt /> Update
+          <MdOutlineSystemUpdateAlt />
+          <span className="hidden md:block">Update</span>
         </button>
       </div>
     )
