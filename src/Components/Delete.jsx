@@ -8,6 +8,7 @@ import {
 import { useState } from "react";
 import { useGetKey } from "../hooks/useGetKey";
 import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 function Delete() {
   const [userYes, setUserYes] = useState(false);
@@ -16,6 +17,8 @@ function Delete() {
   const { mutate: deleteBucketFromApi } = useDeleteBucket();
   const { currentContentId } = useSelector((state) => state.bucket);
   const { data: key } = useGetKey();
+
+  const navigate = useNavigate();
 
   function handleYes() {
     setUserYes(true);
@@ -26,6 +29,7 @@ function Delete() {
     dispatch(setTabIsOpen(false));
     dispatch(setIsDeleting(false));
     deleteBucketFromApi();
+    navigate("/");
   }
 
   return (

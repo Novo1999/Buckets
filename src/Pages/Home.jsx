@@ -37,7 +37,3 @@ function Home() {
 }
 
 export default Home;
-
-// 2 Input fields
-// One for title
-// One for text

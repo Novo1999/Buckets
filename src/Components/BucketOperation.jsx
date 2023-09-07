@@ -54,7 +54,7 @@ function BucketOperation() {
   }
 
   return (
-    <section className="shadow-md bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
+    <section className="shadow-md bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% lg:overflow-auto bucket-section">
       {isDeletingBucket && <Modal />}
       <div className="flex p-4 gap-x-8">
         <div className="text-5xl font-serif">
@@ -83,14 +83,14 @@ function BucketOperation() {
               </button>
             )}
           </div>
-          <div className="grid grid-cols-6 gap-y-4 gap-x-52 ">
+          <div className="grid lg:grid-cols-6 md:grid-cols-3 gap-y-4 lg:gap-x-52 md:gap-x-40">
             {data?.map((item) => {
               return (
                 <Link
                   to={`bucket/${item.id}`}
                   onClickCapture={() => handleClick(item.id)}
                   key={item.id}
-                  className={`shadow-md h-10 p-4 w-48 flex justify-between items-center px-2 drop-shadow-md col-span-1 text-white cursor-pointer font-semibold text-lg hover:border-2 rounded-md ${
+                  className={`shadow-md h-10 md:w-36 p-4 lg:w-48 flex justify-between items-center px-2 drop-shadow-md col-span-1 text-white cursor-pointer font-semibold text-lg hover:border-2 rounded-md ${
                     currentContentId === item.id && "border-2 "
                   } `}
                   style={{ backgroundColor: item.color }}

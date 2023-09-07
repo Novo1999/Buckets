@@ -12,6 +12,7 @@ export function useGetBucket() {
   const { data, isLoading } = useQuery({
     queryKey: [queryKey],
     queryFn: getAllContent,
+    refetchInterval: 5000,
   });
 
   return { data, isLoading };
