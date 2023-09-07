@@ -21,7 +21,6 @@ export function useUpdateBucket() {
   const { mutate: updateBucket } = useMutation({
     mutationFn: getAllContent,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["bucket"] });
       toast("Bucket Updated Successfully", {
         duration: 1000,
         position: "top-right",
@@ -31,6 +30,7 @@ export function useUpdateBucket() {
         },
         icon: "🔃",
       });
+      queryClient.invalidateQueries({ queryKey: ["bucket"] });
     },
   });
 

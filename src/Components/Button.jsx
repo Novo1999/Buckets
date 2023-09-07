@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { MdOutlineSystemUpdateAlt } from "react-icons/md";
+import { useState } from "react";
 
 function Button({ updateFn }) {
-  const dispatch = useDispatch();
   const { isEditing, currentContentId, editedContent } = useSelector(
     (state) => state.bucket
   );

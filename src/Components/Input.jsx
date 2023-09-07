@@ -20,7 +20,7 @@ function Input({ value, dispatchFn, type }) {
   }
 
   return (
-    <div className="relative p-4 flex justify-center max-w-[120rem]">
+    <div className="relative p-4 flex justify-center bg-green-400 h-[50.2rem]">
       {type === "editContent" && <Button updateFn={handleUpdate} />}
       <textarea
         value={value}
@@ -29,8 +29,8 @@ function Input({ value, dispatchFn, type }) {
         }}
         onChange={(e) => handleChange(e)}
         type="text"
-        placeholder="Text"
-        className={`border-4 rounded-lg focus:outline-red-300 w-full h-[40rem] px-2 resize-none overflow-y-auto pt-[6px]`}
+        placeholder="Text..."
+        className="border-2 focus:border-4 rounded-lg transition-all duration-100 ease-in border-black focus:outline-none w-full h-[40rem] px-2 resize-none overflow-y-auto pt-[6px] bg-emerald-200 placeholder:text-black"
       ></textarea>
     </div>
   );

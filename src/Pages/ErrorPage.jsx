@@ -1,4 +1,4 @@
-import { useRouteError } from "react-router-dom";
+import { Link, useRouteError } from "react-router-dom";
 
 export default function ErrorPage() {
   const error = useRouteError();
@@ -14,6 +14,9 @@ export default function ErrorPage() {
             {error.statusText || error.message}
           </i>
         </p>
+        <Link to="/" className="bg-black text-white p-4 rounded-3xl">
+          Go Back
+        </Link>
       </div>
     </div>
   );

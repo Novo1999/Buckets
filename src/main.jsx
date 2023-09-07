@@ -12,6 +12,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Provider } from "react-redux";
 import { store } from "./features/store";
+import App from "./App";
 
 const queryClient = new QueryClient();
 
@@ -23,7 +24,7 @@ const router = createBrowserRouter([
   // },
   {
     path: "/",
-    element: <Home />,
+    element: <App />,
     errorElement: <ErrorPage />,
     children: [
       {
@@ -33,6 +34,11 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "bucket-list",
+    element: <BucketList />,
+    errorElement: <ErrorPage />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -40,8 +46,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <QueryClientProvider client={queryClient}>
       <Provider store={store}>
         <RouterProvider router={router} />
-        <ReactQueryDevtools />
       </Provider>
+      <ReactQueryDevtools />
     </QueryClientProvider>
   </React.StrictMode>
 );

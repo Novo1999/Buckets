@@ -15,15 +15,6 @@ export function useDeleteBucket() {
   const { mutate, isLoading: isDeleting } = useMutation({
     mutationFn: getAllContent,
     onSuccess: () => {
-      toast("Bucket Deleted Succesfully", {
-        duration: 1000,
-        position: "top-right",
-        style: {
-          backgroundColor: "white",
-          color: "black",
-        },
-        icon: "❌",
-      });
       queryClient.invalidateQueries({ queryKey: ["bucket"] });
     },
     onError: (err) => toast.error(err.message),

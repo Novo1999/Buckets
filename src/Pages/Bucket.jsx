@@ -3,7 +3,7 @@ import Input from "../Components/Input";
 import { useDispatch, useSelector } from "react-redux";
 import { setEditedContent } from "../features/bucketSlice/bucketSlice";
 import { useEffect, useState } from "react";
-import { useLocation, useParams, useSearchParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 function Bucket() {
   const { currentContentId, isEditing, editedContent } = useSelector(
@@ -29,7 +29,7 @@ function Bucket() {
   }, [clickedItemContent, dispatch]);
 
   return (
-    <div className="flex flex-col justify-center">
+    <div className="flex flex-col justify-center ">
       <Input
         type="editContent"
         className="border-2 border-black"

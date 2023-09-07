@@ -5,6 +5,7 @@ const initialState = {
   currentContentId: null,
   tabIsOpen: false,
   isEditing: false,
+  isDeleting: false,
   editedContent: "",
 };
 
@@ -27,6 +28,9 @@ export const bucketSlice = createSlice({
     setEditedContent: (state, action) => {
       state.editedContent = action.payload;
     },
+    setIsDeleting: (state, action) => {
+      state.isDeleting = action.payload;
+    },
   },
 });
 
@@ -36,6 +40,7 @@ export const {
   setTabIsOpen,
   setIsEditing,
   setEditedContent,
+  setIsDeleting,
 } = bucketSlice.actions;
 
 export default bucketSlice.reducer;
