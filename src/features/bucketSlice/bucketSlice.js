@@ -7,6 +7,7 @@ const initialState = {
   isEditing: false,
   isDeleting: false,
   editedContent: "",
+  isFocused: false,
 };
 
 export const bucketSlice = createSlice({
@@ -31,6 +32,9 @@ export const bucketSlice = createSlice({
     setIsDeleting: (state, action) => {
       state.isDeleting = action.payload;
     },
+    setIsFocused: (state, action) => {
+      state.isFocused = action.payload;
+    },
   },
 });
 
@@ -41,6 +45,7 @@ export const {
   setIsEditing,
   setEditedContent,
   setIsDeleting,
+  setIsFocused,
 } = bucketSlice.actions;
 
 export default bucketSlice.reducer;

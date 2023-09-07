@@ -1,29 +1,15 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { updateContent, useUpdateBucket } from "../hooks/useUpdateBucket";
 import Button from "./Button";
-import { setIsEditing, textContent } from "../features/bucketSlice/bucketSlice";
-import { useEffect, useState } from "react";
-import { useCreateBucket } from "../hooks/useCreateBucket";
+import {
+  setIsEditing,
+  setIsFocused,
+} from "../features/bucketSlice/bucketSlice";
 
 function Input({ value, dispatchFn, type }) {
-  const [isFocused, setIsFocused] = useState(false);
-  const { text } = useSelector((state) => state.bucket);
   const dispatch = useDispatch();
   const { updateBucket } = useUpdateBucket();
-  const { mutate: createBucket } = useCreateBucket();
-
-  useEffect(() => {
-    document.addEventListener("keydown", (e) => {
-      if (!isFocused) return;
-      if (!text) return;
-      if (e.ctrlKey && e.key === "s") {
-        e.preventDefault();
-        dispatch(textContent(""));
-        createBucket({ content: text });
-      }
-    });
-  }, [isFocused, createBucket, dispatch, text]);
 
   // Changes the text area
   function handleChange(e) {
