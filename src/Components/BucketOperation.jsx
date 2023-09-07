@@ -33,7 +33,7 @@ function BucketOperation() {
 
   function showTitle() {
     if (text.length > 0)
-      return text.length > 15 ? `${text.slice(0, 15)}...` : text.slice(0, 15);
+      return text.length > 10 ? `${text.slice(0, 10)}...` : text.slice(0, 10);
     return (
       <span className="flex items-center font-semibold">
         <IoCreateOutline />
@@ -54,16 +54,16 @@ function BucketOperation() {
   }
 
   return (
-    <section className="shadow-md bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% lg:overflow-auto bucket-section">
+    <section className="shadow-md bg-gradient-to-r from-indigo-500 max-w-full from-10% via-sky-500 via-30% to-emerald-500 to-90% lg:overflow-auto bucket-section pb-2">
       {isDeletingBucket && <Modal />}
-      <div className="flex p-4 gap-x-8">
-        <div className="text-5xl font-serif">
-          <span className="text-5xl">
+
+      <div className="flex p-4 flex-col sm:flex-row h-48 overflow-x-auto lg:overflow-x-auto lg:h-40 xl:max-h-52 xl:overflow-auto ">
+        <div className="flex sm:items-center justify-evenly ml-2">
+          <span className="text-4xl sm:text-5xl font-serif mb-8">
             <BsBucketFill />
+            Buckets
           </span>
-          Buckets
-        </div>
-        <div className="grid gap-y-20 gap-x-28 grid-cols-12">
+
           <div className="h-30 w-48 flex flex-col gap-6 items-center col-span-2 rounded-md">
             <Link
               className="relative text-white top-4 border-2 border-blue-900 shadow-xl px-2 py-2 rounded-md"
@@ -83,21 +83,24 @@ function BucketOperation() {
               </button>
             )}
           </div>
-          <div className="grid lg:grid-cols-6 md:grid-cols-3 gap-y-4 lg:gap-x-52 md:gap-x-40">
+        </div>
+
+        <div className="ml-8">
+          <div className="grid gap-y-4 gap-20 grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-8">
             {data?.map((item) => {
               return (
                 <Link
                   to={`bucket/${item.id}`}
                   onClickCapture={() => handleClick(item.id)}
                   key={item.id}
-                  className={`shadow-md h-10 md:w-36 p-4 lg:w-48 flex justify-between items-center px-2 drop-shadow-md col-span-1 text-white cursor-pointer font-semibold text-lg hover:border-2 rounded-md ${
-                    currentContentId === item.id && "border-2 "
+                  className={`shadow-md h-10 p-4 max-w-xl w-fit mr-8 flex justify-between items-center px-2 drop-shadow-md text-white cursor-pointer font-semibold text-lg hover:border-2 rounded-md ${
+                    currentContentId === item.id && "border-2"
                   } `}
                   style={{ backgroundColor: item.color }}
                 >
                   <span className="drop-shadow-lg">
-                    {item.content.length > 12
-                      ? `${item.content.slice(0, 12)}...`
+                    {item.content.length > 5
+                      ? `${item.content.slice(0, 5)}...`
                       : item.content}
                   </span>
                   {isDeleting && currentContentId === item.id ? (

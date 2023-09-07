@@ -28,7 +28,7 @@ function Home() {
           <Outlet />
         ) : (
           <div className="flex flex-col">
-            <Input value={text} dispatchFn={textContent} />
+            <Input value={text} dispatchFn={textContent} type="write" />
           </div>
         )}
       </div>
