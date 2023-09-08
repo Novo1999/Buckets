@@ -38,30 +38,32 @@ function BucketOperation() {
     <section className="shadow-md bg-gradient-to-r from-indigo-500 max-w-full from-10% via-sky-500 via-30% to-emerald-500 to-90% lg:overflow-auto bucket-section pb-2">
       {isDeletingBucket && <Modal onPage="home" />}
 
-      <div className="flex p-4 flex-col sm:flex-row h-48 overflow-x-auto lg:overflow-x-auto lg:h-40 xl:max-h-52 xl:overflow-auto ">
+      <div className="flex p-4 flex-col sm:flex-row h-52 overflow-x-auto lg:overflow-x-auto lg:h-40 xl:max-h-52 xl:overflow-auto">
         <div className="flex sm:items-center justify-evenly">
-          <Header />
-          <div className="h-30 w-48 flex flex-col gap-6 items-center col-span-2 rounded-md">
+          <Header type="home" />
+          <div className="h-fit justify-between sm:ml-4 w-48 flex gap-4 sm:mr-10 col-span-2 rounded-md">
             <Button to="bucket-list" type="link">
               Show All
             </Button>
-            <Button
-              to="/"
-              onClick={() => dispatch(setTabIsOpen(false))}
-              type="link"
-            >
-              {showTitle()}
-            </Button>
-            {text && (
-              <button
-                className="h-4 w-36 flex justify-center items-center gap-2 hover:underline rounded-md text-lg font-semibold  transition-all duration-300"
-                type="submit"
-                onClick={(e) => handleSubmit(e)}
+            <div className="flex flex-col gap-4 w-fit">
+              <Button
+                to="/"
+                onClick={() => dispatch(setTabIsOpen(false))}
+                type="link"
               >
-                <AiOutlineSave />
-                Save
-              </button>
-            )}
+                {showTitle()}
+              </Button>
+              {text && (
+                <button
+                  className="h-4 w-36 flex justify-center items-center gap-2 hover:underline rounded-md text-lg font-semibold  transition-all duration-300"
+                  type="submit"
+                  onClick={(e) => handleSubmit(e)}
+                >
+                  <AiOutlineSave />
+                  Save
+                </button>
+              )}
+            </div>
           </div>
         </div>
 

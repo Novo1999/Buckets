@@ -1,6 +1,5 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { MdOutlineSystemUpdateAlt } from "react-icons/md";
-import { useState } from "react";
 import { Link } from "react-router-dom";
 
 function Button({ updateFn, type, children, to, onClick }) {
@@ -13,7 +12,7 @@ function Button({ updateFn, type, children, to, onClick }) {
       <Link
         to={to}
         onClick={onClick}
-        className="relative text-white top-2 border-2 drop-shadow-lg shadow-xl px-2 py-2 rounded-md "
+        className="relative text-white bottom-2 border-2 text-sm drop-shadow-lg shadow-xl px-2 py-2 rounded-md"
       >
         {children}
       </Link>

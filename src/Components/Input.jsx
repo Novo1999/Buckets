@@ -26,6 +26,7 @@ function Input({ value, dispatchFn, type }) {
     <div className="relative p-4 flex justify-center bg-green-400 h-full lg:h-[36rem] xl:h-full">
       {type === "editContent" && <Button updateFn={handleUpdate} />}
       <textarea
+        autoFocus={type === "write"}
         value={value}
         onBlur={() => setIsFocused(false)}
         onFocus={() => {
@@ -36,7 +37,7 @@ function Input({ value, dispatchFn, type }) {
         type="text"
         placeholder="Text..."
         className="border-2 focus:border-4 rounded-lg transition-all duration-100 ease-in border-black focus:outline-none w-full h-[32rem]
-        lg:h-[38rem] px-2 resize-none overflow-y-auto pt-[6px] bg-emerald-200 placeholder:text-black 2xl:h-[45rem] pr-28"
+        lg:h-[35rem] px-2 resize-none overflow-y-auto pt-[6px] bg-emerald-200 placeholder:text-black 2xl:h-[45rem] pr-28"
       ></textarea>
     </div>
   );
