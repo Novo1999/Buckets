@@ -10,6 +10,8 @@ import {
 
 import { formatDate } from "../helper";
 import useWindowDimensions from "../hooks/useWindowDimensions";
+import { AiOutlineHeart, AiFillHeart, AiFillStar } from "react-icons/ai";
+import { updateContent } from "../hooks/useUpdateBucket";
 
 function BucketLink({ item, onPage, route }) {
   const dispatch = useDispatch();
@@ -34,16 +36,34 @@ function BucketLink({ item, onPage, route }) {
     return item.content;
   }
 
+  function handleFavorite(e, id, content, favorite) {
+    e.preventDefault();
+    updateContent(id, content, favorite);
+  }
+
   if (onPage === "list") {
     return (
       <Link
         key={item.id}
         to={`/bucket/${item.id}`}
         onClickCapture={() => handleClick(item.id)}
-        className={`shadow-md p-2 gap-x-4 w-96 h-fit lg:w-56 sm:w-80 md:h-fit md:w-52 mb-10 xl:w-80 relative flex px-2 drop-shadow-md text-white cursor-pointer font-semibold text-lg hover:border-2 rounded-md mx-auto`}
+        className={`shadow-md p-3 gap-x-4 w-96 lg:w-56 sm:w-80 md:w-52 mb-10 xl:w-80 relative flex px-2 drop-shadow-md text-white cursor-pointer font-semibold text-lg hover:scale-105 transition-all duration-300 rounded-md mx-auto`}
         style={{ backgroundColor: item.color }}
       >
         <div className="flex flex-col transition-all duration-500 gap-2 sm:gap-4">
+          <span
+            onClick={(e) =>
+              handleFavorite(
+                e,
+                item.id,
+                item.content,
+                item.favorite ? false : true
+              )
+            }
+            className="text-xl"
+          >
+            {item.favorite ? <AiFillHeart /> : <AiOutlineHeart />}
+          </span>
           <p className="text-sm sm:text-md lg:text-base">ID: {item.id}</p>
           <p className=" font-thin text-sm lg:text-base">
             Created: {formatDate(item.created_at)}
@@ -54,7 +74,10 @@ function BucketLink({ item, onPage, route }) {
         </div>
         <button
           className="hover:scale-125 text-white transition-all absolute top-4 right-2 duration-300 cross text-xl md:text-2xl"
-          onClick={() => dispatch(setIsDeleting(true))}
+          onClick={(e) => {
+            e.preventDefault();
+            dispatch(setIsDeleting(true));
+          }}
         >
           <MdDeleteForever />
         </button>
@@ -72,7 +95,13 @@ function BucketLink({ item, onPage, route }) {
       }`}
       style={{ backgroundColor: item.color }}
     >
-      <div className="flex flex-col transition-all duration-500">
+      <div className="flex flex-col relative">
+        {item.favorite && (
+          <span className="absolute top-[-16px] left-[-12px] z-10 flex h-3 w-3">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-md bg-white opacity-30 top-1"></span>
+            <AiFillStar />
+          </span>
+        )}
         {Number(route) === item.id ? (
           <span className="text-xs font-thin">
             Created at : {formatDate(item.created_at)}
@@ -80,11 +109,11 @@ function BucketLink({ item, onPage, route }) {
         ) : (
           ""
         )}
-        <span className="drop-shadow-lg">
-          {item.content.length > 7
-            ? `${item.content.slice(0, 7)}...`
+        <p className="drop-shadow-lg text-sm w-max">
+          {item.content?.length > 8
+            ? `${item.content.slice(0, 10)}...`
             : item.content}
-        </span>
+        </p>
       </div>
       <button
         className="hover:scale-125 text-white transition-all duration-300 cross"

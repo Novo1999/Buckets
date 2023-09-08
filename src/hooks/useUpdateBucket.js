@@ -1,13 +1,11 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "../Backend/Supabase";
-
 import { toast } from "react-hot-toast";
-import { getAllContent } from "./useGetBucket";
 
-export async function updateContent(id, content) {
+export async function updateContent(id, content, favorite) {
   const { data, error } = await supabase
     .from("bucket")
-    .update({ content: content })
+    .update({ content: content, favorite: favorite })
     .eq("id", id)
     .select();
 

@@ -35,7 +35,7 @@ function BucketOperation() {
   }
 
   return (
-    <section className="shadow-md bg-gradient-to-r from-indigo-500 max-w-full from-10% via-sky-500 via-30% to-emerald-500 to-90% lg:overflow-auto bucket-section pb-2">
+    <section className="shadow-md bg-gradient-to-r from-indigo-500 max-w-full from-10% via-sky-500 via-30% to-emerald-500 to-90% lg:overflow-auto bucket-section pb-2 pr-2">
       {isDeletingBucket && <Modal onPage="home" />}
 
       <div className="flex p-4 flex-col sm:flex-row h-52 overflow-x-auto lg:overflow-x-auto lg:h-40 xl:max-h-52 xl:overflow-auto">
