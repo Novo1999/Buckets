@@ -1,24 +1,27 @@
-import { BsBucketFill } from "react-icons/bs";
-
 import { AiOutlineSave } from "react-icons/ai";
 
-import { Link } from "react-router-dom";
-import { setTabIsOpen, textContent } from "../features/bucketSlice/bucketSlice";
+import { setTabIsOpen } from "../features/bucketSlice/bucketSlice";
 import Modal from "./Modal";
 
 import { useDispatch, useSelector } from "react-redux";
 import { IoCreateOutline } from "react-icons/io5";
-import { useCreateBucket } from "../hooks/useCreateBucket";
-import SpecificBucket from "./SpecificBucket";
+import AllBuckets from "./AllBuckets";
+import Header from "./Header";
+import Button from "./Button";
+import { useSubmitContent } from "../hooks/useSubmit";
+import { useGetBucket } from "../hooks/useGetBucket";
+import toast, { LoaderIcon } from "react-hot-toast";
 
 function BucketOperation() {
-  const { mutate: createBucket } = useCreateBucket();
   const dispatch = useDispatch();
+  const { handleSubmit } = useSubmitContent();
   const {
     text,
     tabIsOpen,
     isDeleting: isDeletingBucket,
   } = useSelector((state) => state.bucket);
+
+  const { isLoading } = useGetBucket();
 
   function showTitle() {
     if (text.length > 0)
@@ -31,32 +34,24 @@ function BucketOperation() {
     );
   }
 
-  function handleSubmit(e) {
-    if (!text) return;
-    e.preventDefault();
-    dispatch(textContent(""));
-    return createBucket({ content: text });
-  }
-
   return (
     <section className="shadow-md bg-gradient-to-r from-indigo-500 max-w-full from-10% via-sky-500 via-30% to-emerald-500 to-90% lg:overflow-auto bucket-section pb-2">
-      {isDeletingBucket && <Modal />}
+      {isDeletingBucket && <Modal onPage="home" />}
 
       <div className="flex p-4 flex-col sm:flex-row h-48 overflow-x-auto lg:overflow-x-auto lg:h-40 xl:max-h-52 xl:overflow-auto ">
-        <div className="flex sm:items-center justify-evenly ml-2">
-          <span className="text-4xl sm:text-5xl font-serif mb-8">
-            <BsBucketFill />
-            Buckets
-          </span>
-
+        <div className="flex sm:items-center justify-evenly">
+          <Header />
           <div className="h-30 w-48 flex flex-col gap-6 items-center col-span-2 rounded-md">
-            <Link
-              className="relative text-white top-4 border-2 drop-shadow-lg shadow-xl px-2 py-2 rounded-md "
-              onClick={() => dispatch(setTabIsOpen(false))}
+            <Button to="bucket-list" type="link">
+              Show All
+            </Button>
+            <Button
               to="/"
+              onClick={() => dispatch(setTabIsOpen(false))}
+              type="link"
             >
               {showTitle()}
-            </Link>
+            </Button>
             {text && (
               <button
                 className="h-4 w-36 flex justify-center items-center gap-2 hover:underline rounded-md text-lg font-semibold  transition-all duration-300"
@@ -70,10 +65,17 @@ function BucketOperation() {
           </div>
         </div>
 
-        <div className="ml-8">
-          <div className="grid gap-y-4 gap-20 grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-8">
-            <SpecificBucket />
-          </div>
+        <div className="ml-1 mr-10">
+          {isLoading ? (
+            <span className="text-3xl flex items-baseline gap-2 text-white">
+              Loading
+              <LoaderIcon />
+            </span>
+          ) : (
+            <div className="grid gap-y-4 gap-20 grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-8">
+              <AllBuckets />
+            </div>
+          )}
         </div>
       </div>
     </section>

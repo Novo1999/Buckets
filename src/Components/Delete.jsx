@@ -10,7 +10,7 @@ import { useGetKey } from "../hooks/useGetKey";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
-function Delete() {
+function Delete({ onPage }) {
   const [userYes, setUserYes] = useState(false);
   const [input, setInput] = useState("");
   const dispatch = useDispatch();
@@ -29,7 +29,8 @@ function Delete() {
     dispatch(setTabIsOpen(false));
     dispatch(setIsDeleting(false));
     deleteBucketFromApi();
-    navigate("/");
+    if (onPage === "home") navigate("/");
+    if (onPage === "list") navigate("/bucket-list");
   }
 
   return (

@@ -1,9 +1,7 @@
-import { useCreateBucket } from "../hooks/useCreateBucket";
 import { useDispatch, useSelector } from "react-redux";
-import { IoCreateOutline } from "react-icons/io5";
+
 import { useGetBucket } from "../hooks/useGetBucket";
-import { useDeleteBucket } from "../hooks/useDeleteBucket";
-import { LoaderIcon } from "react-hot-toast";
+
 import {
   setCurrentContent,
   setIsDeleting,
@@ -12,13 +10,9 @@ import {
 import { Link } from "react-router-dom";
 import { formatDate } from "../helper";
 import { MdDeleteForever } from "react-icons/md";
-import { useState } from "react";
+import { LoaderIcon } from "react-hot-toast";
 
-function SpecificBucket() {
-  // State
-
-  // Query
-
+function AllBuckets() {
   const { data } = useGetBucket();
 
   const { currentContentId } = useSelector((state) => state.bucket);
@@ -33,7 +27,7 @@ function SpecificBucket() {
     return (
       <Link
         key={item.id}
-        to={`bucket/${item.id}`}
+        to={`/bucket/${item.id}`}
         onClickCapture={() => handleClick(item.id)}
         className={`shadow-md p-2 max-w-xl w-fit gap-x-4 h-fit mr-8 flex justify-between items-center px-2 drop-shadow-md text-white cursor-pointer font-semibold text-lg hover:border-2 rounded-md  ${
           currentContentId === item.id && "border-2"
@@ -65,4 +59,4 @@ function SpecificBucket() {
   });
 }
 
-export default SpecificBucket;
+export default AllBuckets;
