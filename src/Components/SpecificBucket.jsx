@@ -42,7 +42,7 @@ function SpecificBucket() {
       >
         <div className="flex flex-col transition-all duration-500">
           {item.id === currentContentId ? (
-            <span className="text-xs font-thin flex shrink-1 mt-2 ">
+            <span className="text-xs font-thin ">
               Created: {formatDate(item.created_at)}
             </span>
           ) : (

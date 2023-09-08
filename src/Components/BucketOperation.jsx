@@ -51,7 +51,7 @@ function BucketOperation() {
 
           <div className="h-30 w-48 flex flex-col gap-6 items-center col-span-2 rounded-md">
             <Link
-              className="relative text-white top-4 border-2 border-blue-900 shadow-xl px-2 py-2 rounded-md"
+              className="relative text-white top-4 border-2 drop-shadow-lg shadow-xl px-2 py-2 rounded-md "
               onClick={() => dispatch(setTabIsOpen(false))}
               to="/"
             >
