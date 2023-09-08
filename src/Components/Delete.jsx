@@ -91,9 +91,6 @@ function Delete({ onPage }) {
                         setInput("");
                       }
                       if (input === key[0]?.key) {
-                        toast.success("Deleted Successfully", {
-                          duration: 1000,
-                        });
                         handleDelete(currentContentId);
                       }
                     }}

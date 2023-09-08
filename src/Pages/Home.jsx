@@ -11,7 +11,6 @@ import { useEffect } from "react";
 
 function Home() {
   const { text, tabIsOpen } = useSelector((state) => state.bucket);
-
   const dispatch = useDispatch((state) => state.bucket);
   const { pathname } = useLocation();
 

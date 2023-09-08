@@ -19,7 +19,7 @@ export function useUpdateBucket() {
   const queryClient = useQueryClient();
 
   const { mutate: updateBucket } = useMutation({
-    mutationFn: getAllContent,
+    mutationFn: updateContent,
     onSuccess: () => {
       toast("Bucket Updated Successfully", {
         duration: 1000,

@@ -7,13 +7,13 @@ import {
   setIsDeleting,
   setTabIsOpen,
 } from "../features/bucketSlice/bucketSlice";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { formatDate } from "../helper";
 import { MdDeleteForever } from "react-icons/md";
-import { LoaderIcon } from "react-hot-toast";
 
 function AllBuckets() {
   const { data } = useGetBucket();
+  const { id: route } = useParams();
 
   const { currentContentId } = useSelector((state) => state.bucket);
   const dispatch = useDispatch();
@@ -29,15 +29,15 @@ function AllBuckets() {
         key={item.id}
         to={`/bucket/${item.id}`}
         onClickCapture={() => handleClick(item.id)}
-        className={`shadow-md p-2 max-w-xl w-fit gap-x-4 h-fit mr-8 flex justify-between items-center px-2 drop-shadow-md text-white cursor-pointer font-semibold text-lg hover:border-2 rounded-md  ${
-          currentContentId === item.id && "border-2"
-        } `}
+        className={`shadow-md p-2 w-fit gap-x-4 h-fit mr-8 flex justify-between items-center px-2 drop-shadow-md text-white cursor-pointer font-semibold text-lg hover:border-2 rounded-md ${
+          +route === item.id && "border-2"
+        }`}
         style={{ backgroundColor: item.color }}
       >
         <div className="flex flex-col transition-all duration-500">
-          {item.id === currentContentId ? (
-            <span className="text-xs font-thin ">
-              Created: {formatDate(item.created_at)}
+          {+route === item.id ? (
+            <span className="text-xs font-thin">
+              Created at : {formatDate(item.created_at)}
             </span>
           ) : (
             ""

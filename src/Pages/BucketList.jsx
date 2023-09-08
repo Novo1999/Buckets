@@ -25,7 +25,7 @@ function BucketList() {
   }
 
   return (
-    <section className="bg-blue-400 max-w-screen w-full h-full p-4">
+    <section className="bg-blue-400 min-h-screen max-w-screen w-full p-4">
       {isDeletingBucket && <Modal onPage="list" />}
       <div className="flex justify-start gap-10 items-center ml-14">
         <Header />
@@ -46,6 +46,7 @@ function BucketList() {
               style={{ backgroundColor: item.color }}
             >
               <div className="flex flex-col transition-all duration-500 gap-10">
+                <p>ID: {item.id}</p>
                 <p className="text-md font-thin ">
                   Created: {formatDate(item.created_at)}
                 </p>

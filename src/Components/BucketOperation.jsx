@@ -10,7 +10,7 @@ import Header from "./Header";
 import Button from "./Button";
 import { useSubmitContent } from "../hooks/useSubmit";
 import { useGetBucket } from "../hooks/useGetBucket";
-import toast, { LoaderIcon } from "react-hot-toast";
+import { LoaderIcon } from "react-hot-toast";
 
 function BucketOperation() {
   const dispatch = useDispatch();
