@@ -1,35 +1,24 @@
-import { useCreateBucket } from "../hooks/useCreateBucket";
-import { useDispatch, useSelector } from "react-redux";
 import { BsBucketFill } from "react-icons/bs";
-import { MdDeleteForever } from "react-icons/md";
+
 import { AiOutlineSave } from "react-icons/ai";
-import { IoCreateOutline } from "react-icons/io5";
-import { useGetBucket } from "../hooks/useGetBucket";
-import { useDeleteBucket } from "../hooks/useDeleteBucket";
-import { LoaderIcon } from "react-hot-toast";
+
 import { Link } from "react-router-dom";
-import {
-  setCurrentContent,
-  setIsDeleting,
-  setTabIsOpen,
-  textContent,
-} from "../features/bucketSlice/bucketSlice";
+import { setTabIsOpen, textContent } from "../features/bucketSlice/bucketSlice";
 import Modal from "./Modal";
 
+import { useDispatch, useSelector } from "react-redux";
+import { IoCreateOutline } from "react-icons/io5";
+import { useCreateBucket } from "../hooks/useCreateBucket";
+import SpecificBucket from "./SpecificBucket";
+
 function BucketOperation() {
-  // State
+  const { mutate: createBucket } = useCreateBucket();
+  const dispatch = useDispatch();
   const {
     text,
-    currentContentId,
-    isDeleting: isDeletingBucket,
     tabIsOpen,
+    isDeleting: isDeletingBucket,
   } = useSelector((state) => state.bucket);
-  const dispatch = useDispatch();
-
-  // Query
-  const { mutate: createBucket } = useCreateBucket();
-  const { data } = useGetBucket();
-  const { isDeleting } = useDeleteBucket();
 
   function showTitle() {
     if (text.length > 0)
@@ -47,10 +36,6 @@ function BucketOperation() {
     e.preventDefault();
     dispatch(textContent(""));
     return createBucket({ content: text });
-  }
-  function handleClick(id) {
-    dispatch(setCurrentContent(id));
-    dispatch(setTabIsOpen(true));
   }
 
   return (
@@ -87,35 +72,7 @@ function BucketOperation() {
 
         <div className="ml-8">
           <div className="grid gap-y-4 gap-20 grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-8">
-            {data?.map((item) => {
-              return (
-                <Link
-                  to={`bucket/${item.id}`}
-                  onClickCapture={() => handleClick(item.id)}
-                  key={item.id}
-                  className={`shadow-md  p-4 max-w-xl w-fit h-fit mr-8 flex justify-between items-center px-2 drop-shadow-md text-white cursor-pointer font-semibold text-lg hover:border-2 rounded-md ${
-                    currentContentId === item.id && "border-2"
-                  } `}
-                  style={{ backgroundColor: item.color }}
-                >
-                  <span className="drop-shadow-lg">
-                    {item.content.length > 5
-                      ? `${item.content.slice(0, 5)}...`
-                      : item.content}
-                  </span>
-                  {isDeleting && currentContentId === item.id ? (
-                    <LoaderIcon />
-                  ) : (
-                    <button
-                      className="hover:scale-125 text-white transition-all duration-300 cross"
-                      onClick={() => dispatch(setIsDeleting(true))}
-                    >
-                      <MdDeleteForever />
-                    </button>
-                  )}
-                </Link>
-              );
-            })}
+            <SpecificBucket />
           </div>
         </div>
       </div>
