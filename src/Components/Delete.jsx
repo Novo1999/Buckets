@@ -34,7 +34,7 @@ function Delete({ onPage }) {
   }
 
   return (
-    <div className="bg-slate-700 absolute z-10 h-screen w-screen flex justify-center items-center bg-opacity-50 top-0 left-0">
+    <div className="bg-slate-700 fixed z-10 h-screen w-screen flex justify-center items-center bg-opacity-50 top-0 left-0">
       <div className="w-72 relative z-50 h-48 bg-white rounded-xl flex justify-start items-center p-6 flex-col gap-6 shadow-lg ">
         <p className="text-center font-semibold text-md mt-3 font-sans flex ">
           {userYes

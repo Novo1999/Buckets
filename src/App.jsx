@@ -1,9 +1,11 @@
+import Toaster from "./Components/Toaster";
 import Home from "./Pages/Home";
 import { AiFillHeart } from "react-icons/ai";
 
 function App() {
   return (
     <>
+      <Toaster />
       <div className="bg-green-400 overflow-x-hidden h-screen">
         <Home />
         <div className="flex justify-center items-center gap-2 relative lg:bottom-[1px] xl:bottom-4 bottom-4 font-thin text-md">

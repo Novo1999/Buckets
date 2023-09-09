@@ -21,7 +21,7 @@ function Home() {
   return (
     <section>
       <BucketOperation />
-      <Toaster />
+
       <div className="flex flex-col justify-center">
         {tabIsOpen ? (
           <Outlet />
