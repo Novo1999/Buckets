@@ -2,10 +2,9 @@ This is an App to Store Text / Photos
 
 ## Users Can - 
 
-### Log in to the App with username and password (Auth)
-### Create a named bucket to store text  and / or  photos
+### Create buckets to store text
 
-### Can view the text and photo
+### Can view the text 
 
 
 # Tech - 
@@ -21,4 +20,4 @@ This is an App to Store Text / Photos
 
 ### Supabase to keep the data
 
-Live Link - TBA
+Live Link - https://bucket23.netlify.app/
