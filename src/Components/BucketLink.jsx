@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { MdDeleteForever } from "react-icons/md";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import {
   setCurrentContent,
   setIsDeleting,
@@ -12,16 +12,23 @@ import { formatDate } from "../helper";
 import useWindowDimensions from "../hooks/useWindowDimensions";
 import { AiOutlineHeart, AiFillHeart, AiFillStar } from "react-icons/ai";
 import { updateContent } from "../hooks/useUpdateBucket";
+import { useEffect } from "react";
+import toast from "react-hot-toast";
 
 function BucketLink({ item, onPage, route }) {
   const dispatch = useDispatch();
-
+  const { id: routeId } = useParams();
   const { width } = useWindowDimensions();
 
   function handleClick(id) {
     dispatch(setCurrentContent(id));
-    dispatch(setTabIsOpen(true));
   }
+
+  useEffect(() => {
+    if (!routeId) return;
+    dispatch(setCurrentContent(routeId));
+    dispatch(setTabIsOpen(true));
+  }, [routeId, dispatch]);
 
   function setContentLength() {
     if (
@@ -39,6 +46,11 @@ function BucketLink({ item, onPage, route }) {
   function handleFavorite(e, id, content, favorite) {
     e.preventDefault();
     updateContent(id, content, favorite);
+    if (favorite) toast.success("Added to favorites");
+    if (!favorite)
+      toast.success("Removed from favorites", {
+        icon: "⤴",
+      });
   }
 
   if (onPage === "list") {
