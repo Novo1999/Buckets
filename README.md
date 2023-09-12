@@ -18,6 +18,6 @@ This is an App to Store Text / Photos
 
 ### React Query to manage remote state
 
-### Supabase to keep the data
+### Supabase as Backend
 
 Live Link - https://bucket23.netlify.app/
