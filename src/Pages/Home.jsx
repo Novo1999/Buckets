@@ -1,5 +1,3 @@
-import Toaster from "../Components/Toaster";
-
 import { useDispatch, useSelector } from "react-redux";
 import { setTabIsOpen, textContent } from "../features/bucketSlice/bucketSlice";
 
@@ -21,7 +19,6 @@ function Home() {
   return (
     <section>
       <BucketOperation />
-
       <div className="flex flex-col justify-center">
         {tabIsOpen ? (
           <Outlet />

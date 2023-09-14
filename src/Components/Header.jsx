@@ -5,9 +5,9 @@ function Header({ type }) {
   const navigate = useNavigate();
   if (type === "list")
     return (
-      <div className="text-2xl sm:text-5xl font-serif mb-12 relative top-4 right-10">
+      <div className="text-2xl sm:text-5xl font-serif mb-12 relative top-4 right-10 ">
         <div
-          className="flex justify-start items-baseline cursor-pointer"
+          className="flex justify-start items-baseline cursor-pointer "
           onClick={() => navigate("/")}
         >
           <BsBucketFill />
@@ -17,7 +17,7 @@ function Header({ type }) {
       </div>
     );
   return (
-    <div className="text-2xl sm:text-5xl font-serif mb-10 relative">
+    <div className="text-2xl sm:text-5xl font-serif mb-10 relative text-white ">
       <div
         className="flex justify-start items-baseline cursor-pointer"
         onClick={() => navigate("/")}
