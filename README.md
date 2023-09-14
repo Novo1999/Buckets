@@ -6,6 +6,10 @@ This is an App to Store Text / Photos
 
 ### Can view the text 
 
+### Can add to favorites
+
+### Can see all the buckets at once and see which one is marked as favorite
+
 
 # Tech - 
 ### React
@@ -18,6 +22,6 @@ This is an App to Store Text / Photos
 
 ### React Query to manage remote state
 
-### Supabase to keep the data
+### Supabase as Backend
 
 Live Link - https://bucket23.netlify.app/
