@@ -1,37 +1,37 @@
-import { AiOutlineSave } from "react-icons/ai";
+import { AiOutlineSave } from 'react-icons/ai'
 
-import { setTabIsOpen } from "../features/bucketSlice/bucketSlice";
-import Modal from "./Modal";
+import { setTabIsOpen } from '../features/bucketSlice/bucketSlice'
+import Modal from './Modal'
 
-import { useDispatch, useSelector } from "react-redux";
-import { IoCreateOutline } from "react-icons/io5";
-import AllBuckets from "./AllBuckets";
-import Header from "./Header";
-import Button from "./Button";
-import { useSubmitContent } from "../hooks/useSubmit";
-import { useGetBucket } from "../hooks/useGetBucket";
-import { LoaderIcon } from "react-hot-toast";
+import { useDispatch, useSelector } from 'react-redux'
+import { IoCreateOutline } from 'react-icons/io5'
+import AllBuckets from './AllBuckets'
+import Header from './Header'
+import Button from './Button'
+import { useSubmitContent } from '../hooks/useSubmit'
+import { useGetBucket } from '../hooks/useGetBucket'
+import { LoaderIcon } from 'react-hot-toast'
 
 function BucketOperation() {
-  const dispatch = useDispatch();
-  const { handleSubmit } = useSubmitContent();
+  const dispatch = useDispatch()
+  const { handleSubmit } = useSubmitContent()
   const {
     text,
     tabIsOpen,
     isDeleting: isDeletingBucket,
-  } = useSelector((state) => state.bucket);
+  } = useSelector(state => state.bucket)
 
-  const { isLoading } = useGetBucket();
+  const { isLoading } = useGetBucket()
 
   function showTitle() {
     if (text.length > 0)
-      return text.length > 10 ? `${text.slice(0, 10)}...` : text.slice(0, 10);
+      return text.length > 10 ? `${text.slice(0, 10)}...` : text.slice(0, 10)
     return (
       <span className="flex items-center font-semibold">
         <IoCreateOutline />
-        {tabIsOpen ? "Create New" : "Untitled"}
+        {tabIsOpen ? 'Create New' : 'Untitled'}
       </span>
-    );
+    )
   }
 
   return (
@@ -54,9 +54,9 @@ function BucketOperation() {
               </Button>
               {text && (
                 <button
-                  className="h-4 w-36 flex justify-center items-center gap-2 hover:underline underline-offset-4 rounded-md text-lg font-semibold  transition-all duration-300"
+                  className="h-4 w-36 flex justify-center items-center gap-2 hover:underline underline-offset-4 text-lg font-thin  transition-all duration-300 border-2 rounded-lg p-4 text-white"
                   type="submit"
-                  onClick={(e) => handleSubmit(e)}
+                  onClick={e => handleSubmit(e)}
                 >
                   <AiOutlineSave />
                   Save
@@ -80,7 +80,7 @@ function BucketOperation() {
         </div>
       </div>
     </section>
-  );
+  )
 }
 
-export default BucketOperation;
+export default BucketOperation
