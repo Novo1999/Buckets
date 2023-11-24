@@ -20,7 +20,7 @@ function Input({ value, dispatchFn, type }) {
   }
 
   return (
-    <div className='relative p-4 flex justify-center bg-gradient-to-t from-gray-700 via-gray-900 to-black h-full lg:h-[36rem] xl:h-full'>
+    <div className='relative p-4 flex justify-center bg-gradient-to-t from-gray-700 via-gray-900 to-black h-full lg:h-[33.1rem] xl:h-full'>
       {type === 'editContent' && <Button updateFn={handleUpdate} />}
       <textarea
         spellCheck='false'
@@ -34,8 +34,8 @@ function Input({ value, dispatchFn, type }) {
         onChange={e => handleChange(e)}
         type='text'
         placeholder='Text...'
-        className='border-2 focus:border-4 rounded-lg transition-all duration-100 ease-in border-white focus:outline-none w-full h-[32rem]
-        lg:h-[35rem] px-2 resize-none overflow-y-auto pt-[6px] bg-gradient-to-t from-gray-700 via-gray-900 to-black placeholder:text-white text-white 2xl:h-[45rem] pr-28 font-normal text-lg'
+        className='border-2 focus:border-4 rounded-lg transition-all duration-100 ease-in border-white focus:outline-none w-full h-[29rem]
+        sm:h-[32rem] px-2 resize-none overflow-y-auto pt-[6px] bg-gradient-to-t from-gray-700 via-gray-900 to-black placeholder:text-white text-white 2xl:h-[45rem] pr-28 font-normal text-lg'
       ></textarea>
     </div>
   )
