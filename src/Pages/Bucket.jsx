@@ -7,19 +7,19 @@ import { useParams } from 'react-router-dom'
 
 function Bucket() {
   const { currentContentId, isEditing, editedContent } = useSelector(
-    state => state.bucket
+    (state) => state.bucket
   )
   const { data } = useGetBucket()
   const { id: paramId } = useParams()
   const dispatch = useDispatch()
 
   const [clickedItemContent, setClickedItemContent] = useState(
-    data?.find(item => item.id === currentContentId)?.content
+    data?.find((item) => item.id === currentContentId)?.content
   )
 
   useEffect(() => {
     setClickedItemContent(
-      data?.find(item => item.id === Number(paramId))?.content
+      data?.find((item) => item.id === Number(paramId))?.content
     )
   }, [paramId, data])
 
@@ -36,6 +36,8 @@ function Bucket() {
         name='content'
         id='content'
         value={isEditing ? editedContent : clickedItemContent}
+        currentContentId={currentContentId}
+        isEditing={isEditing}
         dispatchFn={setEditedContent}
       />
     </div>
