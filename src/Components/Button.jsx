@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 function Button({ updateFn, type, children, to, onClick }) {
   const { isEditing, currentContentId, editedContent } = useSelector(
-    state => state.bucket
+    (state) => state.bucket
   )
 
   if (type === 'link') {
@@ -20,7 +20,7 @@ function Button({ updateFn, type, children, to, onClick }) {
   }
   return (
     isEditing && (
-      <div className='bg-white text-black px-4 py-2 rounded-xl absolute top-7 right-7 cursor-pointer'>
+      <div className='bg-white text-black px-4 py-2 rounded-md absolute top-7 right-[4rem] sm:right-[7.5rem]  cursor-pointer'>
         <button
           onClick={() => updateFn(currentContentId, editedContent)}
           value='Update'

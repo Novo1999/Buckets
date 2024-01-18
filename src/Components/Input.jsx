@@ -1,14 +1,12 @@
 import { useDispatch } from 'react-redux'
 
-import { updateContent, useUpdateBucket } from '../hooks/useUpdateBucket'
-import Button from './Button'
-import { setIsEditing, setIsFocused } from '../features/bucketSlice/bucketSlice'
-import { FaCheck, FaCopy } from 'react-icons/fa'
+import { useEffect, useState } from 'react'
 import CopyToClipboard from 'react-copy-to-clipboard'
 import toast from 'react-hot-toast'
-import { useEffect, useState } from 'react'
-import { createPortal } from 'react-dom'
-import { useParams } from 'react-router-dom'
+import { FaCheck, FaCopy } from 'react-icons/fa'
+import { setIsEditing, setIsFocused } from '../features/bucketSlice/bucketSlice'
+import { updateContent, useUpdateBucket } from '../hooks/useUpdateBucket'
+import Button from './Button'
 
 function Input({ value, dispatchFn, type, currentContentId, isEditing }) {
   const dispatch = useDispatch()
@@ -46,14 +44,14 @@ function Input({ value, dispatchFn, type, currentContentId, isEditing }) {
       {/* copy to clipboard */}
       {type !== 'write' && (
         <CopyToClipboard text={value} onCopy={handleCopy}>
-          <button className='absolute top-7 bg-white text-black right-[10rem] w-fit p-2 rounded-md flex items-center gap-2 copy-btn'>
+          <button className='absolute top-7 bg-white text-black right-6 w-fit p-2 rounded-md flex items-center gap-2 copy-btn'>
             {copied === currentContentId ? (
               <>
-                <FaCheck /> <span>Copied</span>
+                <FaCheck /> <span className='hidden md:block'>Copied</span>
               </>
             ) : (
               <>
-                <FaCopy /> <span>Copy</span>
+                <FaCopy /> <span className='hidden md:block'>Copy</span>
               </>
             )}
           </button>
