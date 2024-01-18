@@ -69,7 +69,7 @@ function Input({ value, dispatchFn, type, currentContentId, isEditing }) {
         onChange={(e) => handleChange(e)}
         type='text'
         placeholder='Text...'
-        className='border-2 focus:border-4 rounded-lg transition-all duration-100 ease-in border-white focus:outline-none w-full h-[36rem] lg:h-[40rem] xl:h-[45rem]
+        className='border-2 text-area focus:border-4 rounded-lg transition-all duration-100 ease-in border-white focus:outline-none w-full h-[36rem] lg:h-[40rem] xl:h-[45rem]
          px-2 resize-none overflow-y-auto pt-[6px] bg-gradient-to-t from-gray-700 via-gray-900 to-black placeholder:text-white text-white 2xl:h-[45rem] pr-28 font-normal text-lg'
       ></textarea>
       {/* {linksInCurrentField.links.length > 0 &&

@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;700;800&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -37,4 +38,9 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: white;
+}
+
+.text-area {
+  font-family: poppins, monospace;
+  font-size: medium;
 }
