@@ -2,7 +2,7 @@ import { AiOutlineSave } from 'react-icons/ai'
 
 import { setTabIsOpen } from '../features/bucketSlice/bucketSlice'
 import Modal from './Modal'
-
+import { toast } from 'react-hot-toast'
 import { useDispatch, useSelector } from 'react-redux'
 import { IoCreateOutline } from 'react-icons/io5'
 import AllBuckets from './AllBuckets'
@@ -52,7 +52,7 @@ function BucketOperation() {
               >
                 {showTitle()}
               </Button>
-              {text && (
+              {/* {text && (
                 <button
                   className='h-4 w-36 flex justify-center items-center gap-2 text-lg font-normal transition-all duration-300 border-2 rounded-lg p-4 text-white hover:bg-white hover:text-black'
                   type='submit'
@@ -61,7 +61,7 @@ function BucketOperation() {
                   <AiOutlineSave />
                   Save
                 </button>
-              )}
+              )} */}
             </div>
           </div>
         </div>
