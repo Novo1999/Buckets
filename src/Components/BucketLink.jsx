@@ -121,9 +121,14 @@ function BucketLink({ item, onPage, route }) {
         ) : (
           ''
         )}
-        <p className='drop-shadow-lg text-sm w-max'>
+        <p className='drop-shadow-lg text-sm w-max block min-[375px]:hidden'>
           {item.content?.length > 8
-            ? `${item.content.slice(0, 14)}...`
+            ? `${item.content.slice(0, 10)}`
+            : item.content}
+        </p>
+        <p className='drop-shadow-lg text-sm w-max hidden min-[375px]:block'>
+          {item.content?.length > 8
+            ? `${item.content.slice(0, 13)}...`
             : item.content}
         </p>
       </div>
