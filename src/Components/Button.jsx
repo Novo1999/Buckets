@@ -1,7 +1,6 @@
-import { useSelector } from 'react-redux'
 import { MdOutlineSystemUpdateAlt } from 'react-icons/md'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { useState } from 'react'
 
 function Button({ updateFn, type, children, to, onClick }) {
   const { isEditing, currentContentId, editedContent } = useSelector(
@@ -11,8 +10,10 @@ function Button({ updateFn, type, children, to, onClick }) {
   const handleUpdate = () => {
     const input = prompt('ENTER PASSWORD 🙃')
     console.log(input)
-    if (input === 'kosai') {
+    if (input === import.meta.env.VITE_PASSWORD1) {
       updateFn(currentContentId, editedContent)
+    } else {
+      alert('WRONG ❗')
     }
   }
 
