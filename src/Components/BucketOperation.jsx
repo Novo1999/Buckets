@@ -19,7 +19,7 @@ function BucketOperation() {
     text,
     tabIsOpen,
     isDeleting: isDeletingBucket,
-  } = useSelector(state => state.bucket)
+  } = useSelector((state) => state.bucket)
 
   const { isLoading } = useGetBucket()
 
@@ -56,7 +56,7 @@ function BucketOperation() {
                 <button
                   className='h-4 w-36 flex justify-center items-center gap-2 text-lg font-normal transition-all duration-300 border-2 rounded-lg p-4 text-white hover:bg-white hover:text-black'
                   type='submit'
-                  onClick={e => handleSubmit(e)}
+                  onClick={(e) => handleSubmit(e)}
                 >
                   <AiOutlineSave />
                   Save
@@ -73,7 +73,7 @@ function BucketOperation() {
               <LoaderIcon />
             </span>
           ) : (
-            <div className='grid gap-y-4 gap-20 grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-8'>
+            <div className='grid gap-y-4 gap-2 grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-8'>
               <AllBuckets />
             </div>
           )}
