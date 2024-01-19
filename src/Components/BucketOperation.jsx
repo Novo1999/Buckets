@@ -37,7 +37,7 @@ function BucketOperation() {
   return (
     <section className='shadow-md lg:overflow-auto bucket-section pt-2 pr-2'>
       {isDeletingBucket && <Modal onPage='home' />}
-      <div className='flex p-4 flex-col  sm:flex-row h-52 overflow-x-auto lg:overflow-x-auto lg:h-40 xl:max-h-52 xl:overflow-auto'>
+      <div className='flex p-4 flex-col sm:flex-row h-full overflow-x-auto lg:overflow-x-auto sm:h-40 xl:max-h-52 xl:overflow-auto'>
         <div className='flex sm:items-center justify-evenly'>
           <Header type='home' />
           <div className='h-fit justify-between sm:ml-4 w-36 grid gap-2 sm:mr-10 col-span-2 rounded-md text-center '>
