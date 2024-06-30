@@ -4,9 +4,9 @@ import Header from '../Components/Header'
 
 import { useGetBucket } from '../hooks/useGetBucket'
 
-import Modal from '../Components/Modal'
-import BucketLink from '../Components/BucketLink'
 import { Toaster } from 'react-hot-toast'
+import BucketLink from '../Components/BucketLink'
+import Modal from '../Components/Modal'
 
 function BucketList() {
   const { isDeleting: isDeletingBucket } = useSelector((state) => state.bucket)
@@ -22,11 +22,9 @@ function BucketList() {
         </Button>
       </div>
       <div className='grid grid-cols-1 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5 sm:grid-cols-2 md:grid-cols-3'>
-        {data
-          ?.filter((item) => item.content.startsWith('// OS'))
-          .map((item) => {
-            return <BucketLink onPage='list' key={item.id} item={item} />
-          })}
+        {data?.map((item) => {
+          return <BucketLink onPage='list' key={item.id} item={item} />
+        })}
       </div>
     </section>
   )

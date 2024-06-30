@@ -1,9 +1,9 @@
-import { useGetBucket } from '../hooks/useGetBucket'
-import Input from '../Components/Input'
-import { useDispatch, useSelector } from 'react-redux'
-import { setEditedContent } from '../features/bucketSlice/bucketSlice'
 import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
+import Input from '../Components/Input'
+import { setEditedContent } from '../features/bucketSlice/bucketSlice'
+import { useGetBucket } from '../hooks/useGetBucket'
 
 function Bucket() {
   const { currentContentId, isEditing, editedContent } = useSelector(

@@ -37,12 +37,14 @@ function Input({ value, dispatchFn, type, currentContentId, isEditing }) {
     updateBucket()
     dispatch(setIsEditing(false))
   }
+  const splittedValue = value?.split('\n')?.slice(2)
+  const contentStartsWithLAB = value?.startsWith('LAB')
 
   return (
     <div className='relative p-4 flex justify-center bg-gradient-to-t from-gray-700 via-gray-900 to-black h-full lg:h-[33.1rem] xl:h-full'>
       {type === 'editContent' && <Button updateFn={handleUpdate} />}
       {/* copy to clipboard */}
-      {type !== 'write' && (
+      {type !== 'write' && !contentStartsWithLAB && (
         <CopyToClipboard text={value} onCopy={handleCopy}>
           <button className='absolute top-7 bg-white text-black right-6 w-fit p-2 rounded-md flex items-center gap-2 copy-btn'>
             {copied === currentContentId ? (
@@ -57,38 +59,48 @@ function Input({ value, dispatchFn, type, currentContentId, isEditing }) {
           </button>
         </CopyToClipboard>
       )}
-      <textarea
-        spellCheck='false'
-        autoFocus={type === 'write'}
-        value={value}
-        onBlur={() => setIsFocused(false)}
-        onFocus={() => {
-          setIsFocused(true)
-          type === 'editContent' && dispatch(setIsEditing(true))
-        }}
-        onChange={(e) => handleChange(e)}
-        type='text'
-        placeholder='Text...'
-        className='border-2 text-area focus:border-4 rounded-lg transition-all duration-100 ease-in border-white focus:outline-none w-full h-[36rem] lg:h-[40rem] xl:h-[45rem]
+      {contentStartsWithLAB ? (
+        <div>
+          <div className='flex flex-col gap-12 mb-4'>
+            {splittedValue.map((val, index) => {
+              // Extract the project name and URL from the val string
+              const [projectName, url] = val.split(' -> ')
+
+              return (
+                <div
+                  className='text-white w-full bg-white p-4 rounded-lg'
+                  key={index}
+                >
+                  <a
+                    className='text-blue-500 bg-white px-12 rounded-lg underline'
+                    href={url}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  >
+                    {projectName}
+                  </a>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      ) : (
+        <textarea
+          spellCheck='false'
+          autoFocus={type === 'write'}
+          value={value}
+          onBlur={() => setIsFocused(false)}
+          onFocus={() => {
+            setIsFocused(true)
+            type === 'editContent' && dispatch(setIsEditing(true))
+          }}
+          onChange={(e) => handleChange(e)}
+          type='text'
+          placeholder='Text...'
+          className='border-2 text-area focus:border-4 rounded-lg transition-all duration-100 ease-in border-white focus:outline-none w-full h-[36rem] lg:h-[40rem] xl:h-[45rem]
          px-2 resize-none overflow-y-auto pt-[6px] bg-gradient-to-t from-gray-700 via-gray-900 to-black placeholder:text-white text-white 2xl:h-[45rem] pr-28 font-normal text-lg'
-      ></textarea>
-      {/* {linksInCurrentField.links.length > 0 &&
-        createPortal(
-          <div className='absolute top-2 right-2 rounded-md bg-white flex flex-col gap-2 p-2'>
-            <p className='font-semibold text-center'>LINKS HERE</p>
-            {linksInCurrentField.links.map((link, index) => (
-              <a
-                target='blank'
-                className='text-blue-600 underline'
-                key={index}
-                href={link}
-              >
-                {link}
-              </a>
-            ))}
-          </div>,
-          document.body
-        )} */}
+        ></textarea>
+      )}
     </div>
   )
 }

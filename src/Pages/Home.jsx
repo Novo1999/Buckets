@@ -5,7 +5,7 @@ import Input from '../Components/Input'
 
 import BucketOperation from '../Components/BucketOperation'
 import { Outlet, useLocation } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 function Home() {
   const { text, tabIsOpen } = useSelector((state) => state.bucket)
@@ -24,7 +24,7 @@ function Home() {
           <Outlet />
         ) : (
           <div className='flex flex-col'>
-            {/* <Input value={text} dispatchFn={textContent} type='write' /> */}
+            <Input value={text} dispatchFn={textContent} type='write' />
           </div>
         )}
       </div>

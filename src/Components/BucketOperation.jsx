@@ -1,18 +1,19 @@
 import { AiOutlineSave } from 'react-icons/ai'
 
-import { setTabIsOpen } from '../features/bucketSlice/bucketSlice'
-import Modal from './Modal'
-import { toast } from 'react-hot-toast'
-import { useDispatch, useSelector } from 'react-redux'
-import { IoCreateOutline } from 'react-icons/io5'
-import AllBuckets from './AllBuckets'
-import Header from './Header'
-import Button from './Button'
-import { useSubmitContent } from '../hooks/useSubmit'
-import { useGetBucket } from '../hooks/useGetBucket'
 import { LoaderIcon } from 'react-hot-toast'
+import { IoCreateOutline } from 'react-icons/io5'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { setTabIsOpen } from '../features/bucketSlice/bucketSlice'
+import { useGetBucket } from '../hooks/useGetBucket'
+import { useSubmitContent } from '../hooks/useSubmit'
+import AllBuckets from './AllBuckets'
+import Button from './Button'
+import Header from './Header'
+import Modal from './Modal'
 
 function BucketOperation() {
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const { handleSubmit } = useSubmitContent()
   const {
@@ -21,7 +22,7 @@ function BucketOperation() {
     isDeleting: isDeletingBucket,
   } = useSelector((state) => state.bucket)
 
-  const { isLoading } = useGetBucket()
+  const { isLoading, data } = useGetBucket()
 
   function showTitle() {
     if (text.length > 0)
@@ -31,6 +32,28 @@ function BucketOperation() {
         <IoCreateOutline />
         {tabIsOpen ? 'Create New' : 'Untitled'}
       </span>
+    )
+  }
+
+  let content = null
+  if (isLoading) {
+    content = (
+      <span className='text-3xl flex items-baseline gap-2 text-white'>
+        Loading
+        <LoaderIcon />
+      </span>
+    )
+  }
+
+  if (!isLoading && data?.length === 0) {
+    content = <p className='text-white text-xl'>No Items</p>
+  }
+
+  if (!isLoading && !!data) {
+    content = (
+      <div className='grid gap-y-4 gap-2 grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-8'>
+        <AllBuckets />
+      </div>
     )
   }
 
@@ -45,14 +68,22 @@ function BucketOperation() {
               Show All
             </Button>
             <div className='flex flex-col gap-4 w-fit'>
-              <Button
-                to='/'
-                onClick={() => dispatch(setTabIsOpen(false))}
+              <button
+                className='relative text-white bottom-2 border-2 text-sm drop-shadow-lg shadow-xl px-2 py-2 rounded-md hover:bg-white hover:text-black transition-all duration-300'
+                onClick={() => {
+                  const input = prompt('ENTER PASSWORD 🤪')
+                  if (input === 'atel') {
+                    navigate('/')
+                    dispatch(setTabIsOpen(false))
+                  } else {
+                    alert('WRONG')
+                  }
+                }}
                 type='link'
               >
                 {showTitle()}
-              </Button>
-              {/* {text && (
+              </button>
+              {text && (
                 <button
                   className='h-4 w-36 flex justify-center items-center gap-2 text-lg font-normal transition-all duration-300 border-2 rounded-lg p-4 text-white hover:bg-white hover:text-black'
                   type='submit'
@@ -61,23 +92,12 @@ function BucketOperation() {
                   <AiOutlineSave />
                   Save
                 </button>
-              )} */}
+              )}
             </div>
           </div>
         </div>
 
-        <div className='ml-1 mr-10'>
-          {isLoading ? (
-            <span className='text-3xl flex items-baseline gap-2 text-white'>
-              Loading
-              <LoaderIcon />
-            </span>
-          ) : (
-            <div className='grid gap-y-4 gap-2 grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-8'>
-              <AllBuckets />
-            </div>
-          )}
-        </div>
+        <div className='ml-1 mr-10'>{content}</div>
       </div>
     </section>
   )

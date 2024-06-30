@@ -9,7 +9,6 @@ function Button({ updateFn, type, children, to, onClick }) {
 
   const handleUpdate = () => {
     const input = prompt('ENTER PASSWORD 🙃')
-    console.log(input)
     if (input === import.meta.env.VITE_PASSWORD1) {
       updateFn(currentContentId, editedContent)
     } else {

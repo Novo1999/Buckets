@@ -8,12 +8,12 @@ import {
   setTabIsOpen,
 } from '../features/bucketSlice/bucketSlice'
 
-import { formatDate } from '../helper'
-import useWindowDimensions from '../hooks/useWindowDimensions'
-import { AiOutlineHeart, AiFillHeart, AiFillStar } from 'react-icons/ai'
-import { updateContent } from '../hooks/useUpdateBucket'
 import { useEffect } from 'react'
 import toast from 'react-hot-toast'
+import { AiFillHeart, AiFillStar, AiOutlineHeart } from 'react-icons/ai'
+import { formatDate } from '../helper'
+import { updateContent } from '../hooks/useUpdateBucket'
+import useWindowDimensions from '../hooks/useWindowDimensions'
 
 function BucketLink({ item, onPage, route }) {
   const dispatch = useDispatch()
@@ -62,7 +62,7 @@ function BucketLink({ item, onPage, route }) {
         className={`shadow-md p-3 gap-x-4 lg:w-56 w-fit sm:w-80 md:w-52  mb-10 xl:w-80 relative flex px-2 drop-shadow-md text-white cursor-pointer font-semibold text-lg hover:scale-105 transition-all duration-300 rounded-md mx-auto`}
         style={{ backgroundColor: item.color }}
       >
-        <div className='flex flex-col transition-all duration-500 gap-2 sm:gap-4 '>
+        <div className='flex flex-col transition-all duration-500 gap-2 sm:gap-4'>
           <span
             onClick={(e) =>
               handleFavorite(
